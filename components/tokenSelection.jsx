@@ -36,15 +36,18 @@ const TokenSelectionModal = () => {
                 <Formik
                     initialValues={{ token1: 'ETH', token2: 'USDC' }}
                     onSubmit={(values, actions) => {
-                        // on pousse en query string
-                        router.push({
-                            pathname: '/',
-                            query: {
-                                token1: values.token1,
-                                token2: values.token2,
-                            }
-                        }, undefined, /* { shallow: true } */)
-                        onClose()
+                        // on pousse en query string si les deux tokens sont différents
+                        if (values.token1 != values.token2){
+                            
+                            router.push({
+                                pathname: '/',
+                                query: {
+                                    token1: values.token1,
+                                    token2: values.token2,
+                                }
+                            }, undefined, /* { shallow: true } */)
+                            onClose();
+                        } else actions.setSubmitting(false);
                     }}
                 >
                     {(props) => (
