@@ -14,7 +14,6 @@ import {
     FormControl
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const TokenSelectionModal = () => {
@@ -38,14 +37,14 @@ const TokenSelectionModal = () => {
                 <Formik
                     initialValues={{ token1: 'ETH', token2: 'USDC' }}
                     onSubmit={(values, actions) => {
-                        console.log(values)
                         // on pousse en query string
-                        router.replace({
+                        router.push({
+                            pathname: '/',
                             query: {
                                 token1: values.token1,
                                 token2: values.token2,
                             }
-                        }, undefined, { shallow: true })
+                        }, undefined, /* { shallow: true } */)
                         onClose()
                     }}
                 >

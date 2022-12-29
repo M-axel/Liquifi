@@ -1,4 +1,3 @@
-import NextLink from 'next/link';
 import {
     Container,
     Box,
@@ -25,7 +24,6 @@ import {
 } from '@chakra-ui/react';
 
 const Navbar = props => {
-    const { path } = props;
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
