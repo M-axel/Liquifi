@@ -20,9 +20,9 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    useDisclosure
+    useDisclosure,
+    Spacer
 } from '@chakra-ui/react';
-// import Logo from './logo';
 
 const Navbar = props => {
     const { path } = props;
@@ -45,14 +45,11 @@ const Navbar = props => {
                 maxW="container.md"
                 wrap="wrap"
                 align="center"
-                justify="space-between"
             >
-                <Flex align="center" mr={5}>
-                    <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-                        {/* <Logo /> */}
-                        Liquifi
-                    </Heading>
-                </Flex>
+                <Heading as="h1" size="lg" letterSpacing={'tighter'}>
+                    Liquifi
+                </Heading>
+                <Spacer />
                 <Button onClick={onOpen}>
                     Se connecter
                 </Button>
