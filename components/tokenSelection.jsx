@@ -5,10 +5,8 @@ import {
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     useDisclosure,
     Button,
-    Heading,
     Select,
     Box,
     FormControl
