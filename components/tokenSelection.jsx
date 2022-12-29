@@ -14,13 +14,14 @@ import {
 import { Field, Form, Formik } from 'formik';
 import { useRouter } from 'next/router';
 
+import getTokens from '../lib/tokens';
+
 const TokenSelectionModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true })
 
     const router = useRouter();
 
-    // TODO: fetch ou hard code full list
-    const tokens = [{ ticker: 'ETH', name: 'Ethereum' }, { ticker: 'USDC', name: 'USD Coin' }, { ticker: 'DAI', name: 'Dai Stablecoin' }]
+    const tokens = getTokens();
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
