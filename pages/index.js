@@ -1,6 +1,7 @@
 import { Container, Heading, Card, Button } from '@chakra-ui/react';
 
 import TokenSelectionModal from '../components/tokenSelection';
+import Deposits from '../components/deposits';
 
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -23,17 +24,17 @@ export default function Home() {
         {`${token1} / ${token2}`}
       </Heading>
 
-      <div class="container overflow-hidden">
+      <div className="container overflow-hidden">
         <div className="row g-5">
           <div className="col">
             <div className="row mb-2">
-              <Card>
+              <Card p={3}>
                 Fees
               </Card>
             </div>
             <div className="row mb-2">
-              <Card>
-                Deposits
+              <Card p={3}>
+                <Deposits token1={token1} token2={token2} />
               </Card>
             </div>
             <div className="row">
@@ -44,12 +45,12 @@ export default function Home() {
           </div>
           <div className="col">
             <div className="row mb-2">
-              <Card>
+              <Card p={3}>
                 Graph
               </Card>
             </div>
             <div className="row">
-              <Card>
+              <Card p={3}>
                 Range
               </Card>
             </div>
