@@ -1,7 +1,5 @@
-import { RepeatIcon } from '@chakra-ui/icons';
 import {
     Heading,
-    Icon,
     Flex,
     Button,
     Stack, InputGroup,
@@ -12,10 +10,8 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper
 } from '@chakra-ui/react';
+import CachedIcon from '@mui/icons-material/Cached';
 import { useState } from 'react';
-
-// import { RepeatIcon } from '@chakra-ui/icons';
-
 
 const Deposits = ({ token1, token2 }) => {
     const [token1Value, setToken1Value] = useState(0);
@@ -79,7 +75,8 @@ const Deposits = ({ token1, token2 }) => {
                 </InputGroup>
                 <Flex align={'center'}>
                     <Button mr={3} onClick={computeToken2}>
-                        <Icon as={RepeatIcon} />
+                        {/* <Icon as={RepeatIcon} /> */}
+                        <CachedIcon />
                     </Button>
                     <InputGroup>
                         <NumberInput
