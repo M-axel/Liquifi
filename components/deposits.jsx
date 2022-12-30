@@ -1,5 +1,20 @@
-import { Input, Heading, Stack, InputGroup, InputRightElement, NumberInputField, NumberInput, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from '@chakra-ui/react';
+import { RepeatIcon } from '@chakra-ui/icons';
+import {
+    Heading,
+    Icon,
+    Flex,
+    Button,
+    Stack, InputGroup,
+    InputRightElement,
+    NumberInputField,
+    NumberInput,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper
+} from '@chakra-ui/react';
 import { useState } from 'react';
+
+// import { RepeatIcon } from '@chakra-ui/icons';
 
 
 const Deposits = ({ token1, token2 }) => {
@@ -7,14 +22,28 @@ const Deposits = ({ token1, token2 }) => {
     const [token2Value, setToken2Value] = useState(0);
 
     const handleChange = (value) => {
-        // console.log(value)
-        setToken1Value(value)
-
-        setTimeout(() => { // clear timeout si re-excecution de handleChange
-            // TODO: appel api pour calcul quantité token2
-            setToken2Value(value)
-        }, 2000);
+        setToken1Value(value);
+        setToken2Value();
     }
+
+    const computeToken2 = () => {
+        fetch('/api/deposits', {
+            method: 'POST',
+            body: JSON.stringify({
+                token1: {
+                    ticker: token1,
+                    value: token1Value
+                },
+                token2: {
+                    ticker: token2
+                }
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setToken2Value(data);
+            })
+    };
 
     return (
         <>
@@ -32,8 +61,8 @@ const Deposits = ({ token1, token2 }) => {
                         value={token1Value}
                         onChange={handleChange}
                         w='100%'
-                        >
-                        
+                    >
+
                         <NumberInputField />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
@@ -48,24 +77,28 @@ const Deposits = ({ token1, token2 }) => {
                         />
                     </NumberInput>
                 </InputGroup>
-
-                <InputGroup>
-                    <NumberInput
-                        size='lg'
-                        value={token2Value}
-                        w='100%'
+                <Flex align={'center'}>
+                    <Button mr={3} onClick={computeToken2}>
+                        <Icon as={RepeatIcon} />
+                    </Button>
+                    <InputGroup>
+                        <NumberInput
+                            size='lg'
+                            value={token2Value}
+                            w='100%'
                         >
-                        
-                        <NumberInputField />
-                        <InputRightElement
-                            pointerEvents='none'
-                            color='gray.300'
-                            fontSize='1em'
-                            children={token2}
-                            mr={10}
-                        />
-                    </NumberInput>
-                </InputGroup>
+                            <NumberInputField />
+                            <InputRightElement
+                                pointerEvents='none'
+                                color='gray.300'
+                                fontSize='1em'
+                                children={token2}
+                                mr={10}
+                            />
+                        </NumberInput>
+                    </InputGroup>
+                </Flex>
+
             </Stack>
 
         </>
