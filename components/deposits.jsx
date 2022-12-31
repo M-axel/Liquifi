@@ -13,9 +13,8 @@ import {
 import CachedIcon from '@mui/icons-material/Cached';
 import { useState } from 'react';
 
-const Deposits = ({ token1, token2 }) => {
-    const [token1Value, setToken1Value] = useState(0);
-    const [token2Value, setToken2Value] = useState(0);
+const Deposits = ({ token1, token1Value, setToken1Value, token2, token2Value, setToken2Value }) => {
+
 
     const handleChange = (value) => {
         setToken1Value(value);
