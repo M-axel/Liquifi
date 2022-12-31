@@ -17,10 +17,23 @@ export default function Home() {
 
   const [risk, setRisk] = useState('Medium');
 
+  const [sumbittable, setSubmittable] = useState(false);
+
   useEffect(() => {
     setToken1(router.query.token1)
     setToken2(router.query.token2)
   }, [router.query])
+
+  useEffect(() => {
+    if(token1Value > 0 && token1Value !== undefined && token1Value > 0 && token2Value !== undefined) setSubmittable(true)
+    else setSubmittable(false)
+  }, [token1Value, token2Value])
+
+  const onSubmit = () => {
+    console.log(risk)
+    console.log(token1, '=>', token1Value)
+    console.log(token2, '=>', token2Value)
+  }
 
   return (
     <Container maxW="container.lg">
@@ -41,12 +54,12 @@ export default function Home() {
             <div className="row mb-2">
               <Card p={3}>
                 <Deposits
-                token1={token1}
-                token1Value={token1Value}
-                setToken1Value={setToken1Value}
-                token2={token2}
-                token2Value={token2Value}
-                setToken2Value={setToken2Value}
+                  token1={token1}
+                  token1Value={token1Value}
+                  setToken1Value={setToken1Value}
+                  token2={token2}
+                  token2Value={token2Value}
+                  setToken2Value={setToken2Value}
                 />
               </Card>
             </div>
@@ -56,7 +69,9 @@ export default function Home() {
               </Card>
             </div>
             <div className="row">
-              <Button>
+              <Button
+                disabled={!sumbittable}
+                onClick={onSubmit}>
                 Calculer
               </Button>
             </div>
