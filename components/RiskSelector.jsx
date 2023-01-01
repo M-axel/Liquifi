@@ -48,7 +48,7 @@ const RiskSelector = ({ setRisk }) => {
             <Heading as='h3' size='md'>
                 Risk selection
             </Heading>
-            <HStack {...group}>
+            <HStack {...group} justify='space-evenly'>
                 {options.map((value) => {
                     const radio = getRadioProps({ value })
                     return (

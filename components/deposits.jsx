@@ -11,7 +11,6 @@ import {
     NumberDecrementStepper
 } from '@chakra-ui/react';
 import CachedIcon from '@mui/icons-material/Cached';
-import { useState } from 'react';
 
 const Deposits = ({ token1, token1Value, setToken1Value, token2, token2Value, setToken2Value }) => {
 

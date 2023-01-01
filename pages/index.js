@@ -3,6 +3,7 @@ import { Container, Heading, Card, Button } from '@chakra-ui/react';
 import TokenSelectionModal from '../components/tokenSelection';
 import Deposits from '../components/deposits';
 import RiskSelector from '../components/RiskSelector';
+import Fees from '../components/Fees';
 
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -19,6 +20,8 @@ export default function Home() {
 
   const [sumbittable, setSubmittable] = useState(false);
 
+  const [data, setData] = useState();
+
   useEffect(() => {
     setToken1(router.query.token1)
     setToken2(router.query.token2)
@@ -30,10 +33,6 @@ export default function Home() {
   }, [token1Value, token2Value])
 
   const onSubmit = () => {
-    // console.log(risk)
-    // console.log(token1, '=>', token1Value)
-    // console.log(token2, '=>', token2Value)
-
     fetch('/api/range', {
       method: 'POST',
       body: JSON.stringify({
@@ -50,7 +49,7 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setData(data);
       })
   }
 
@@ -67,7 +66,7 @@ export default function Home() {
           <div className="col">
             <div className="row mb-2">
               <Card p={3}>
-                Fees
+                <Fees value={data?.fees} /* totalDeposit={} */ />
               </Card>
             </div>
             <div className="row mb-2">
