@@ -25,14 +25,33 @@ export default function Home() {
   }, [router.query])
 
   useEffect(() => {
-    if(token1Value > 0 && token1Value !== undefined && token1Value > 0 && token2Value !== undefined) setSubmittable(true)
+    if (token1Value > 0 && token1Value !== undefined && token1Value > 0 && token2Value !== undefined) setSubmittable(true)
     else setSubmittable(false)
   }, [token1Value, token2Value])
 
   const onSubmit = () => {
-    console.log(risk)
-    console.log(token1, '=>', token1Value)
-    console.log(token2, '=>', token2Value)
+    // console.log(risk)
+    // console.log(token1, '=>', token1Value)
+    // console.log(token2, '=>', token2Value)
+
+    fetch('/api/range', {
+      method: 'POST',
+      body: JSON.stringify({
+        risk,
+        token1: {
+          ticker: token1,
+          value: token1Value
+        },
+        token2: {
+          ticker: token2,
+          value: token2Value
+        }
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
   }
 
   return (

@@ -33,7 +33,7 @@ const RadioCard = (props) => {
 }
 
 const RiskSelector = ({ setRisk }) => {
-    const options = ['High', 'Medium', 'Low']
+    const options = ['Low', 'Medium', 'High']
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'RiskSelector',
