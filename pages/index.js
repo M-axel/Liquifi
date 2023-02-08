@@ -7,6 +7,7 @@ import Fees from '../components/Fees';
 
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Graph from '../components/Graph';
 
 export default function Home() {
   const router = useRouter();
@@ -20,7 +21,21 @@ export default function Home() {
 
   const [sumbittable, setSubmittable] = useState(false);
 
-  const [data, setData] = useState();
+  const [data, setData] = useState({
+    fees: 0.0,
+    range: {
+        low: 1,
+        mid: 2,
+        high: 3,
+    },
+    series: [
+        {x: 0, y: 0},
+        {x: 1, y: 0},
+        {x: 2, y: 0},
+        {x: 3, y: 0},
+        {x: 4, y: 0},
+    ]
+});
 
   useEffect(() => {
     setToken1(router.query.token1)
@@ -97,7 +112,9 @@ export default function Home() {
           <div className="col">
             <div className="row mb-2">
               <Card p={3}>
-                Graph
+                {
+                  data != undefined ? <Graph data={data} /> : <p>No data</p>
+                }
               </Card>
             </div>
             <div className="row">
