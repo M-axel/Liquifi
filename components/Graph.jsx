@@ -23,23 +23,44 @@ ChartJS.register(
     Legend
 );
 
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: false,
+const Graph = ({ data }) => {
+
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: false,
+            },
+            arbitraryLine: {
+                arbitraryLineColor: 'red',
+                xPositionLow: data.range.low || 1.7,
+                xPositionMid: data.range.mid || 2,
+                xPositionHigh: data.range.high || 2.3,
+            }
         },
-    },
-    scales: {
-        y: 
-            {
+        scales: {
+            y: {
                 beginAtZero: true,
                 type: 'linear'
+            }
+        },
+    };
+    
+    const arbitraryLine = {
+        id: 'arbitraryLine',
+        beforeDraw(chart, args, options) {
+            const { ctx, chartArea: { top, right, bottom, left, width, height }, scales:
+                { x, y } } = chart;
+            ctx.save();
+            ctx.strokeStyle = options.arbitraryLineColor;
+            ctx.strokeRect(x.getPixelForValue(options.xPositionLow), top, 0, height)
+            ctx.strokeRect(x.getPixelForValue(options.xPositionMid), top, 0, height)
+            ctx.strokeRect(x.getPixelForValue(options.xPositionHigh), top, 0, height)
+    
+            ctx.restore();
         }
-    }
-};
+    };
 
-const Graph = ({ data }) => {
     const formattedData = {
         labels: data.series.map(({ x, y }) => x),
         datasets: [
@@ -53,7 +74,7 @@ const Graph = ({ data }) => {
     };
 
 
-    return <Line options={options} data={formattedData} />;
+    return <Line options={options} data={formattedData} plugins={[arbitraryLine]} />;
 }
 
 export default Graph;
