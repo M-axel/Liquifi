@@ -2,7 +2,7 @@ export default function handler(req, res) {
     const { risk, token1, token2 } = JSON.parse(req.body)
     // token1: { ticker, value }, token2:{ ticker, value }
 
-    console.log(risk, token1, token2);
+    console.log('API /range :', risk, token1, token2);
   
     // TODO: appel au vrai service de calcul
     res.status(200).json({

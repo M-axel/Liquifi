@@ -21,6 +21,7 @@ export default function Home() {
   const [risk, setRisk] = useState('Medium');
 
   const [sumbittable, setSubmittable] = useState(false);
+  const [poolSumbittable, setPoolSubmittable] = useState(false);
 
   const [data, setData] = useState({
     fees: 0.0,
@@ -45,7 +46,10 @@ export default function Home() {
 
   useEffect(() => {
     if (token1Value > 0 && token1Value !== undefined && token1Value > 0 && token2Value !== undefined) setSubmittable(true)
-    else setSubmittable(false)
+    else {
+      setSubmittable(false)
+      setPoolSubmittable(false)
+    }
   }, [token1Value, token2Value])
 
   const onSubmit = () => {
@@ -67,6 +71,28 @@ export default function Home() {
       .then((data) => {
         setData(data);
       })
+      .then(() => setPoolSubmittable(true))
+  }
+
+  const onSubmitPool = () => {
+    fetch('/api/pool', {
+      method: 'POST',
+      body: JSON.stringify({
+        risk,
+        token1: {
+          ticker: token1,
+          value: token1Value
+        },
+        token2: {
+          ticker: token2,
+          value: token2Value
+        },
+        range: {
+          low: data.range.low,
+          high: data.range.high
+        }
+      })
+    }).then((res) => console.log(res.status))
   }
 
   return (
@@ -106,7 +132,7 @@ export default function Home() {
               <Button
                 disabled={!sumbittable}
                 onClick={onSubmit}>
-                Calculer
+                Find Price Range
               </Button>
             </div>
           </div>
@@ -114,7 +140,7 @@ export default function Home() {
             <div className="row mb-2">
               <Card p={3}>
                 <Heading as='h3' size='md'>
-                  Repartition
+                  Liquidity Position
                 </Heading>
                 {
                   data != undefined ? <Graph data={data} /> : <p>No data</p>
@@ -124,12 +150,19 @@ export default function Home() {
             <div className="row">
               <Card p={3}>
                 <Heading as='h3' size='md'>
-                  Price range
+                  Price Range
                 </Heading>
                 {
-                  data != undefined ? <PriceRange range={data?.range} token1={token1} token2={token2}/> : <p>No data</p>
+                  data != undefined ? <PriceRange range={data?.range} token1={token1} token2={token2} /> : <p>No data</p>
                 }
               </Card>
+            </div>
+            <div className="row">
+              <Button
+                disabled={!poolSumbittable}
+                onClick={onSubmitPool}>
+                Create Pool
+              </Button>
             </div>
           </div>
         </div>

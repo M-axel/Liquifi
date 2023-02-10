@@ -46,7 +46,7 @@ const RiskSelector = ({ setRisk }) => {
     return (
         <>
             <Heading as='h3' size='md'>
-                Risk selection
+                Risk Selection
             </Heading>
             <HStack {...group} justify='space-evenly'>
                 {options.map((value) => {
