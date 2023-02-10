@@ -33,9 +33,9 @@ const Graph = ({ data }) => {
             },
             arbitraryLine: {
                 arbitraryLineColor: 'red',
-                xPositionLow: data.range.low || 1.7,
-                xPositionMid: data.range.mid || 2,
-                xPositionHigh: data.range.high || 2.3,
+                xPositionLow: data.range.low || null,
+                xPositionMid: data.range.mid || null,
+                xPositionHigh: data.range.high || null,
             }
         },
         scales: {

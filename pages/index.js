@@ -8,6 +8,7 @@ import Fees from '../components/Fees';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Graph from '../components/Graph';
+import PriceRange from '../components/PriceRange';
 
 export default function Home() {
   const router = useRouter();
@@ -24,18 +25,18 @@ export default function Home() {
   const [data, setData] = useState({
     fees: 0.0,
     range: {
-        low: 1,
-        mid: 2,
-        high: 3,
+      low: 0,
+      mid: 0,
+      high: 0,
     },
     series: [
-        {x: 0, y: 0},
-        {x: 1, y: 0},
-        {x: 2, y: 0},
-        {x: 3, y: 0},
-        {x: 4, y: 0},
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: 2, y: 0 },
+      { x: 3, y: 0 },
+      { x: 4, y: 0 },
     ]
-});
+  });
 
   useEffect(() => {
     setToken1(router.query.token1)
@@ -112,6 +113,9 @@ export default function Home() {
           <div className="col">
             <div className="row mb-2">
               <Card p={3}>
+                <Heading as='h3' size='md'>
+                  Repartition
+                </Heading>
                 {
                   data != undefined ? <Graph data={data} /> : <p>No data</p>
                 }
@@ -119,7 +123,12 @@ export default function Home() {
             </div>
             <div className="row">
               <Card p={3}>
-                Range
+                <Heading as='h3' size='md'>
+                  Price range
+                </Heading>
+                {
+                  data != undefined ? <PriceRange range={data?.range} token1={token1} token2={token2}/> : <p>No data</p>
+                }
               </Card>
             </div>
           </div>
