@@ -1,14 +1,14 @@
 import { Container, Heading, Card, Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import TokenSelectionModal from '../components/tokenSelection';
 import Deposits from '../components/deposits';
 import RiskSelector from '../components/RiskSelector';
 import Fees from '../components/Fees';
-
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import Graph from '../components/Graph';
 import PriceRange from '../components/PriceRange';
+import FeedbackModal from '../components/FeedbackModal';
 
 export default function Home() {
   const router = useRouter();
@@ -39,6 +39,8 @@ export default function Home() {
     ]
   });
 
+  const [creationPoolRes, setCreationPoolRes] = useState();
+
   useEffect(() => {
     setToken1(router.query.token1)
     setToken2(router.query.token2)
@@ -50,6 +52,8 @@ export default function Home() {
       setSubmittable(false)
       setPoolSubmittable(false)
     }
+
+    setCreationPoolRes() // réinitialise la reponse
   }, [token1Value, token2Value])
 
   const onSubmit = () => {
@@ -92,7 +96,7 @@ export default function Home() {
           high: data.range.high
         }
       })
-    }).then((res) => console.log(res.status))
+    }).then((res) => setCreationPoolRes(res.status))
   }
 
   return (
@@ -163,6 +167,7 @@ export default function Home() {
                 onClick={onSubmitPool}>
                 Create Pool
               </Button>
+              <FeedbackModal code={creationPoolRes}/>
             </div>
           </div>
         </div>

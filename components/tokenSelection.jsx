@@ -30,7 +30,7 @@ const TokenSelectionModal = () => {
                 <ModalHeader>Liquifi</ModalHeader>
 
                 <ModalBody>
-                    Selection de la paire
+                    Tokens Selection
                 </ModalBody>
 
                 <Formik
