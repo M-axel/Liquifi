@@ -151,7 +151,7 @@ export default function Home() {
                 }
               </Card>
             </div>
-            <div className="row">
+            <div className="row mb-2">
               <Card p={3}>
                 <Heading as='h3' size='md'>
                   Price Range
@@ -167,7 +167,7 @@ export default function Home() {
                 onClick={onSubmitPool}>
                 Create Pool
               </Button>
-              <FeedbackModal code={creationPoolRes}/>
+              <FeedbackModal code={creationPoolRes} />
             </div>
           </div>
         </div>
