@@ -11,8 +11,13 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
-    Spacer
+    Spacer,
+    HStack,
+    Link
 } from '@chakra-ui/react';
+
+import NextLink from 'next/link'
+
 
 const Navbar = props => {
 
@@ -38,6 +43,15 @@ const Navbar = props => {
                 <Heading as="h1" size="lg" letterSpacing={'tighter'}>
                     Liquifi
                 </Heading>
+
+                <HStack pl={5}>
+                    <Link as={NextLink} href='/'>
+                        Home
+                    </Link>
+                    <Link as={NextLink} href='/profile'>
+                        Profile
+                    </Link>
+                </HStack>
                 <Spacer />
                 <Button onClick={onOpen}>
                     Se connecter
