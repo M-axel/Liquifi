@@ -57,7 +57,7 @@ const TokenSelectionModal = () => {
                                     {({ field, form }) => (
                                         <FormControl>
                                             <Select {...field}>
-                                                {tokens.map(t => <option value={t.ticker} key={`token-1-select-option-${t.ticker}`}>{`${t.name} (${t.ticker})`}</option>)}
+                                                {tokens["main"].map(t => <option value={t.ticker} key={`token-1-select-option-${t.ticker}`}>{`${t.name} (${t.ticker})`}</option>)}
                                             </Select>
                                         </FormControl>
                                     )}
@@ -66,7 +66,7 @@ const TokenSelectionModal = () => {
                                     {({ field, form }) => (
                                         <FormControl>
                                             <Select {...field}>
-                                                {tokens.map(t => <option value={t.ticker} key={`token-1-select-option-${t.ticker}`}>{`${t.name} (${t.ticker})`}</option>)}
+                                                {tokens["commun"].map(t => <option value={t.ticker} key={`token-1-select-option-${t.ticker}`}>{`${t.name} (${t.ticker})`}</option>)}
                                             </Select>
                                         </FormControl>
                                     )}
