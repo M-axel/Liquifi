@@ -133,7 +133,7 @@ const Profile = () => {
             <Flex
             // justifyContent={'space-evenly'} p={3}
             >
-                {pools.map((pool) => <PoolCard {...pool} />)}
+                {pools.map((pool) => <PoolCard {...pool} key={`pool-${pool.id}`}/>)}
             </Flex>
 
             {
@@ -148,7 +148,7 @@ const Profile = () => {
             <Flex
             // justifyContent={'space-evenly'} p={3}
             >
-                {archivedPools.map((pool) => <PoolCard {...pool} />)}
+                {archivedPools.map((pool) => <PoolCard {...pool} key={`pool-archived-${pool.id}`}/>)}
             </Flex>
 
         </Container>

@@ -19,15 +19,16 @@ const PoolCard = ({
         <Card m={2} id={`pool-card-${id}`}>
             <CardHeader pb={0}>
                 <Heading size='md'>{`${token1.ticker} / ${token2.ticker}`}</Heading>
+                <Text>{`${token1.value} / ${token2.value}`}</Text>
             </CardHeader>
 
-            <CardBody>
+            <CardBody pt={0.5} pb={0.5}>
                 <Stack>
                     {
                         archivedAt
                             ?
                             <Text pt='2' fontSize='sm'>
-                                Created on {createdAt.toLocaleDateString('fr-FR')}
+                                Created on {createdAt.toLocaleDateString('fr-FR')}<br />
                                 Archived on {archivedAt.toLocaleDateString('fr-FR')}
                             </Text>
                             :
@@ -40,9 +41,9 @@ const PoolCard = ({
                     </Text>
                     <Text pt='2' fontSize='sm'>
                         Fees collected:
-                    </Text>
-                    <Text color='blue.600' fontSize='2xl'>
-                        ${fees}
+                        <Text color='blue.600' fontSize='2xl'>
+                            ${fees}
+                        </Text>
                     </Text>
                 </Stack>
             </CardBody>
