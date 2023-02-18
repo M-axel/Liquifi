@@ -1,4 +1,4 @@
-import { Container, Heading, Card, Button } from '@chakra-ui/react';
+import { Container, Heading, Card, Button, Center } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -103,10 +103,12 @@ export default function Home() {
     <Container maxW="container.lg">
       <TokenSelectionModal />
 
-      <Heading as='h3' size='lg'>
-        {`${token1} / ${token2}`}
-      </Heading>
-
+      <Center>
+        <Heading as='h3' size='lg'>
+          {`${token1} / ${token2}`}
+        </Heading>
+      </Center>
+      
       <div className="container overflow-hidden">
         <div className="row g-5">
           <div className="col">
