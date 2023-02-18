@@ -61,15 +61,55 @@ const Profile = () => {
             },
             tokens: {
                 token1: {
-                    ticker: 'ATOM',
-                    value: 3.00,
+                    ticker: 'LTC',
+                    value: 89.00,
                 },
                 token2: {
-                    ticker: 'BUSD',
-                    value: 3.00
+                    ticker: 'BTC',
+                    value: 0.004
                 }
             },
-            fees: 29.06,
+            fees: 30.21,
+        },
+        {
+            id: 4,
+            createdAt: new Date('2023/02/10'),
+            archivedAt: new Date('2023/02/13'),
+            range: {
+                low: 1.8,
+                high: 2,
+            },
+            tokens: {
+                token1: {
+                    ticker: 'TRX',
+                    value: 740.30,
+                },
+                token2: {
+                    ticker: 'USDC',
+                    value: 80.00
+                }
+            },
+            fees: 4.80,
+        },
+        {
+            id: 5,
+            createdAt: new Date('2023/02/01'),
+            archivedAt: new Date('2023/02/05'),
+            range: {
+                low: 5.43,
+                high: 7.21,
+            },
+            tokens: {
+                token1: {
+                    ticker: 'FTM',
+                    value: 1392.00,
+                },
+                token2: {
+                    ticker: 'USDC',
+                    value: 90.82
+                }
+            },
+            fees: 60.7,
         },
     ];
 
